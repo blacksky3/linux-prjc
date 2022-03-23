@@ -6,13 +6,13 @@
 #                                  |___/
 
 #Maintainer: blacksky3 <blacksky3@tuta.io> <https://github.com/blacksky3>
-#Credits: Jan Alexander Steffens (heftig) <heftig@archlinux.org> ---> For the base PKGBUILD
-#Credits: Andreas Radke <andyrtr@archlinux.org> ---> For the base PKGBUILD
-#Credits: Linus Torvalds ---> For the linux kernel
-#Credits: Joan Figueras <ffigue at gmail dot com> ---> For the base PKFBUILD
-#Credits: Alfred Chen <https://gitlab.com/alfredchen/projectc> ---> For the BMQ/PDS CPU Scheduler patch
-#Credits: Piotr Górski <lucjan.lucjanov@gmail.com> <https://github.com/sirlucjan> ---> For Arch patches and keep alive PDS/BMQ CPU Scheduler patch
-#Credits: Etienne Juvigny (Tk-Glitch) <tkg@froggi.es> <https://github.com/Tk-Glitch> ---> For config setings
+#Credits: Jan Alexander Steffens (heftig) <heftig@archlinux.org>
+#Credits: Andreas Radke <andyrtr@archlinux.org>
+#Credits: Joan Figueras <ffigue at gmail dot com>
+#Credits: Linus Torvalds
+#Credits: Alfred Chen <https://gitlab.com/alfredchen/projectc>
+#Credits: Piotr Górski <lucjan.lucjanov@gmail.com> <https://github.com/sirlucjan>
+#Credits: Etienne Juvigny (Tk-Glitch) <tkg@froggi.es> <https://github.com/Tk-Glitch>
 
 ################################# Arch ################################
 
@@ -78,7 +78,14 @@ source=(https://mirrors.edge.kernel.org/pub/linux/kernel/v5.x/linux-$pkgver.tar.
         0001-PRJC-for-5.17.patch
         # Piotr Górski patches
         # Arch patches
-        ${lucjanpath}/arch-patches/0001-ZEN-Add-sysctl-and-CONFIG-to-disallow-unprivileged-C.patch)
+        ${lucjanpath}/arch-patches/0001-ZEN-Add-sysctl-and-CONFIG-to-disallow-unprivileged-C.patch
+        # Block patches. Set BFQ as default
+        ${lucjanpath}/block-patches-sep/0001-block-Kconfig.iosched-set-default-value-of-IOSCHED_B.patch
+        ${lucjanpath}/block-patches-sep/0002-block-Fix-depends-for-BLK_DEV_ZONED.patch
+        ${lucjanpath}/ll-patches/0002-LL-elevator-set-default-scheduler-to-bfq-for-blk-mq.patch
+        ${lucjanpath}/ll-patches/0003-LL-elevator-always-use-bfq-unless-overridden-by-flag.patch
+        # BLK patches
+        ${lucjanpath}/blk-patches/0001-blk-patches.patch)
 
 export KBUILD_BUILD_HOST=archlinux
 export KBUILD_BUILD_USER=$pkgbase
@@ -335,6 +342,11 @@ prepare(){
 
   sleep 2s
 
+  msg2 "Enable BLK_CGROUP_IOSTAT (IO statistics monitor per cgroup)"
+  scripts/config --module CONFIG_BLK_CGROUP_IOSTAT
+
+  sleep 2s
+
   msg2 "Enable CONFIG_SCHED_ALT, this feature enable alternative CPU scheduler"
   scripts/config --enable CONFIG_SCHED_ALT
 
@@ -383,7 +395,7 @@ build(){
 }
 
 _package(){
-  pkgdesc='The Linux kernel and modules with Alfred Chen PDS CPU scheduler patch and Piotr Górski Arch patches'
+  pkgdesc='The Linux kernel and modules with Alfred Chen PDS CPU scheduler patch and Piotr Górski Arch, Block and BLK patches'
   depends=(coreutils kmod initramfs)
   optdepends=('crda: to set the correct wireless channels of your country'
               'linux-firmware: firmware images needed for some devices')
@@ -500,4 +512,9 @@ _package-headers(){
 sha256sums=(555fef61dddb591a83d62dd04e252792f9af4ba9ef14683f64840e46fa20b1b1
             05381b085c83737922a85fa6f42aa61b3d1400840a7952bf8524726e1d8f74f8
             6f1fbed65deab3ec19b186a2d59ae94297b366719d2302d1b72bf7c7bcc85179
-            4bd1bac2959b989af0dae573123b9aff7c609090537e94ee0ae05099cad977b8)
+            4bd1bac2959b989af0dae573123b9aff7c609090537e94ee0ae05099cad977b8
+            4d385d6a7f7fd9f9aba19d5c24c24814e1af370ff245c8dc98b03482a27cb257
+            a043e4c393395e6ad50d35c973fa0952f5deb109aee8a23103e24297c027641e
+            6978a2010c3a2dd7bec1260e3f1e0f9d6ebc032664cdd917847f352e58ba2870
+            b5ff6f189a83472b737965e0412ca401af4bc539b308e0d9bfa403294e6795e0
+            790f7db055ea5c5bde76c01e590087fab1666cb09f363d4ae92e6c0da3528c30)

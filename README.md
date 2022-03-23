@@ -1,6 +1,6 @@
 # linux-prjc
 
-Linux kernel build for Archlinux with PDS/BMQ CPU scheduler patch by Alfred Chen.
+Linux kernel build for Archlinux with PDS/BMQ CPU scheduler patch by Alfred Chen and Piotr Górski Arch, Block and BLK patches.
 
 # Version
 
