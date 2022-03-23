@@ -83,9 +83,7 @@ source=(https://mirrors.edge.kernel.org/pub/linux/kernel/v5.x/linux-$pkgver.tar.
         ${lucjanpath}/block-patches-sep/0001-block-Kconfig.iosched-set-default-value-of-IOSCHED_B.patch
         ${lucjanpath}/block-patches-sep/0002-block-Fix-depends-for-BLK_DEV_ZONED.patch
         ${lucjanpath}/ll-patches/0002-LL-elevator-set-default-scheduler-to-bfq-for-blk-mq.patch
-        ${lucjanpath}/ll-patches/0003-LL-elevator-always-use-bfq-unless-overridden-by-flag.patch
-        # BLK patches
-        ${lucjanpath}/blk-patches/0001-blk-patches.patch)
+        ${lucjanpath}/ll-patches/0003-LL-elevator-always-use-bfq-unless-overridden-by-flag.patch)
 
 export KBUILD_BUILD_HOST=archlinux
 export KBUILD_BUILD_USER=$pkgbase
@@ -342,11 +340,6 @@ prepare(){
 
   sleep 2s
 
-  msg2 "Enable BLK_CGROUP_IOSTAT (IO statistics monitor per cgroup)"
-  scripts/config --module CONFIG_BLK_CGROUP_IOSTAT
-
-  sleep 2s
-
   msg2 "Enable CONFIG_SCHED_ALT, this feature enable alternative CPU scheduler"
   scripts/config --enable CONFIG_SCHED_ALT
 
@@ -395,7 +388,7 @@ build(){
 }
 
 _package(){
-  pkgdesc='The Linux kernel and modules with Alfred Chen BMQ CPU scheduler patch and Piotr Górski Arch, Block and BLK patches'
+  pkgdesc='The Linux kernel and modules with Alfred Chen BMQ CPU scheduler patch and Piotr Górski Arch and Block patches'
   depends=(coreutils kmod initramfs)
   optdepends=('crda: to set the correct wireless channels of your country'
               'linux-firmware: firmware images needed for some devices')
@@ -516,5 +509,4 @@ sha256sums=(555fef61dddb591a83d62dd04e252792f9af4ba9ef14683f64840e46fa20b1b1
             4d385d6a7f7fd9f9aba19d5c24c24814e1af370ff245c8dc98b03482a27cb257
             a043e4c393395e6ad50d35c973fa0952f5deb109aee8a23103e24297c027641e
             6978a2010c3a2dd7bec1260e3f1e0f9d6ebc032664cdd917847f352e58ba2870
-            b5ff6f189a83472b737965e0412ca401af4bc539b308e0d9bfa403294e6795e0
-            790f7db055ea5c5bde76c01e590087fab1666cb09f363d4ae92e6c0da3528c30)
+            b5ff6f189a83472b737965e0412ca401af4bc539b308e0d9bfa403294e6795e0)
