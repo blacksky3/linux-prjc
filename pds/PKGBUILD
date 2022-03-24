@@ -71,7 +71,6 @@ xanmodpath=https://raw.githubusercontent.com/xanmod/linux-patches/master/linux-$
 
 source=(https://mirrors.edge.kernel.org/pub/linux/kernel/v5.x/linux-$pkgver.tar.xz
         ${archlinuxpath}/config
-        0001-PRJC-for-5.17.patch
         # Piotr Górski patches
         # Arch patches
         ${lucjanpath}/arch-patches/0001-ZEN-Add-sysctl-and-CONFIG-to-disallow-unprivileged-C.patch
@@ -83,6 +82,11 @@ source=(https://mirrors.edge.kernel.org/pub/linux/kernel/v5.x/linux-$pkgver.tar.
         # CPU patches
         ${lucjanpath}/cpu-patches-sep/0002-init-Kconfig-enable-O3-for-all-arches.patch
         ${lucjanpath}/cpu-patches-sep/0004-Makefile-Turn-off-loop-vectorization-for-GCC-O3-opti.patch
+        # PRJC patches
+        ${lucjanpath}/prjc-patches/0001-PRJC-for-5.17.patch
+        # PRJC Fixes patches
+        ${lucjanpath}/prjc-fixes-sep/0001-sched-alt-Transpose-the-sched_rq_watermark-array.patch
+        ${lucjanpath}/prjc-fixes-sep/0002-sched-alt-Add-memory-barriers-around-atomics.patch
         # XanMod patches
         # CPU Power patches
         ${xanmodpath}/cpupower/0001-cpupower-update-for-Linux-5.18-rc1.patch
@@ -399,7 +403,7 @@ build(){
 }
 
 _package(){
-  pkgdesc='The Linux kernel and modules with Alfred Chen PDS/BMQ CPU scheduler patch, Piotr Górski Arch, Block and CPU patches, XanMod CPU Power patch and Graysky2 kernel_compiler_patch patch - PDS enabled'
+  pkgdesc='The Linux kernel and modules with Alfred Chen PDS/BMQ CPU scheduler patch (kept alive artificially by Piotr Górski), Piotr Górski Arch, Block, CPU and PRJC Fixes patches, XanMod CPU Power patch and Graysky2 kernel_compiler_patch patch - PDS enabled'
   depends=(coreutils kmod initramfs)
   optdepends=('crda: to set the correct wireless channels of your country'
               'linux-firmware: firmware images needed for some devices')
@@ -515,7 +519,6 @@ _package-headers(){
 
 sha256sums=(555fef61dddb591a83d62dd04e252792f9af4ba9ef14683f64840e46fa20b1b1
             05381b085c83737922a85fa6f42aa61b3d1400840a7952bf8524726e1d8f74f8
-            6f1fbed65deab3ec19b186a2d59ae94297b366719d2302d1b72bf7c7bcc85179
             4bd1bac2959b989af0dae573123b9aff7c609090537e94ee0ae05099cad977b8
             4d385d6a7f7fd9f9aba19d5c24c24814e1af370ff245c8dc98b03482a27cb257
             a043e4c393395e6ad50d35c973fa0952f5deb109aee8a23103e24297c027641e
@@ -523,5 +526,8 @@ sha256sums=(555fef61dddb591a83d62dd04e252792f9af4ba9ef14683f64840e46fa20b1b1
             b5ff6f189a83472b737965e0412ca401af4bc539b308e0d9bfa403294e6795e0
             74546291433f8e79c9c960075edbd7974d715818b1be6c982308adf93e9e9c4f
             7bf85364c3876a648b542ba5a5ada801181183b29366408ef2b2971edab0bd4c
+            6f1fbed65deab3ec19b186a2d59ae94297b366719d2302d1b72bf7c7bcc85179
+            fe3ab45730ea44fce526b7461ca5ece3425996e1b52f88f23d4eff3c277272f0
+            a57a4de293d2e75523b9d646b665f5cfc6e032a7aeba66fb1a232ce1c8f66ebb
             05715dd3a05812c3a1185ca6831c8bd38cee3352dab343717ed77b49b4b527c0
             dea86a521603414a8c7bf9cf1f41090d5d6f8035ce31407449e25964befb1e50)
