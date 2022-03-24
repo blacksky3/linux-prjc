@@ -358,7 +358,7 @@ prepare(){
 
   sleep 2s
 
-  msg2 "Enable PDS CPU scheduler"
+  msg2 "Enable BMQ CPU scheduler"
   scripts/config --disable CONFIG_SCHED_PDS
   scripts/config --enable CONFIG_SCHED_BMQ
 
