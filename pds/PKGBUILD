@@ -82,8 +82,6 @@ source=(https://mirrors.edge.kernel.org/pub/linux/kernel/v5.x/linux-$pkgver.tar.
         # CPU patches
         ${lucjanpath}/cpu-patches-sep/0002-init-Kconfig-enable-O3-for-all-arches.patch
         ${lucjanpath}/cpu-patches-sep/0004-Makefile-Turn-off-loop-vectorization-for-GCC-O3-opti.patch
-        # PRJC patches
-        ${lucjanpath}/prjc-patches/0001-PRJC-for-5.17.patch
         # PRJC Fixes patches
         ${lucjanpath}/prjc-fixes-sep/0001-sched-alt-Transpose-the-sched_rq_watermark-array.patch
         ${lucjanpath}/prjc-fixes-sep/0002-sched-alt-Add-memory-barriers-around-atomics.patch
