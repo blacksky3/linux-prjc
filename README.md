@@ -4,7 +4,7 @@ Linux kernel build for Archlinux with Alfred Chen PDS/BMQ CPU scheduler patch (k
 
 # Version
 
-- 5.17
+- 5.17.1
 
 # Build
 
