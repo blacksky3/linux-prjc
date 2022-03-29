@@ -65,7 +65,7 @@ if [[ "$_compiler" = "2" ]]; then
 fi
 options=(!strip)
 
-archlinuxpath=https://raw.githubusercontent.com/archlinux/svntogit-packages/7f98cfac6f93f0c57b930d42da2f95e77076fbc4/trunk
+archlinuxpath=https://raw.githubusercontent.com/archlinux/svntogit-packages/cb8242a510d80d4e58215a639053fa61954e1b9d/trunk
 patchpath=https://raw.githubusercontent.com/blacksky3/patches/main/$major
 
 source=(https://mirrors.edge.kernel.org/pub/linux/kernel/v5.x/linux-$pkgver.tar.xz
@@ -518,7 +518,7 @@ _package-headers(){
 }
 
 sha256sums=(7cd5c5d432a25f45060868ce6a8578890e550158a2f779c4a20804b551e84c24
-            05381b085c83737922a85fa6f42aa61b3d1400840a7952bf8524726e1d8f74f8
+            bd1e57c15d4eb62024d2ee935b54d36e74e73b22c3800b45ecf9233521a9f74b
             845342ef47279ae02ba5cb8a79aaa05f34c0b6ab388c4d19842dcbeadb027cc1
             8be6493857bd6b7e86e5d47b456885952ab91fb32293d613f5c7ea69dd816542
             026c15030315f37ef7aecc3cd0d7d7b23f0549062cc4affe8592ac458547bfb1
