@@ -65,16 +65,21 @@ if [[ "$_compiler" = "2" ]]; then
 fi
 options=(!strip)
 
-archlinuxpath=https://raw.githubusercontent.com/archlinux/svntogit-packages/0bbf02b31459152f9ca46984fb823537211031ca/trunk
+archlinuxpath=https://raw.githubusercontent.com/archlinux/svntogit-packages/5a760e76311f5e8a9bb6c8fa69cc17d59e705322/trunk
 patchpath=https://raw.githubusercontent.com/blacksky3/patches/main/$major
 
 source=(https://mirrors.edge.kernel.org/pub/linux/kernel/v5.x/linux-$pkgver.tar.xz
         ${archlinuxpath}/config
         # PRJC patch
-        ${patchpath}/prjc/0001-PRJC-for-5.17-v1.patch
+        ${patchpath}/prjc/0001-PRJC-for-5.17-v2.patch
         ${patchpath}/prjc/0001-sched-alt-Transpose-the-sched_rq_watermark-array.patch
         ${patchpath}/prjc/0002-sched-alt-Add-memory-barriers-around-atomics.patch
         ${patchpath}/prjc/0003-alt_core.c-Potential-fix-for-the-UBSAN-out-of-bounds.patch
+        ${patchpath}/prjc/0004-alt_core.c-Add-potentially-missing-idle-on_rq-assign.patch
+        ${patchpath}/prjc/0005-alt_core.c-Add-potentially-missing-assignment-of-p-o.patch
+        ${patchpath}/prjc/0006-sched-alt-Sync-61bb6cd2f765-mm-move-node_reclaim_dis.patch
+        ${patchpath}/prjc/0007-init-Kconfig-ProjectC-Move-uclamp-config-block-out-o.patch
+        ${patchpath}/prjc/0008-sched-alt-Sync-32ed980c3020-sched-Remove-unused-inli.patch
         # Arch patches
         ${patchpath}/arch/0001-ZEN-Add-sysctl-and-CONFIG-to-disallow-unprivileged-C.patch
         ${patchpath}/arch/0002-random-treat-bootloader-trust-toggle-the-same-way-as.patch
@@ -527,11 +532,16 @@ _package-headers(){
 }
 
 sha256sums=('7cd5c5d432a25f45060868ce6a8578890e550158a2f779c4a20804b551e84c24'
-            'c05ff4ca7a69b94ace73d1019c398f3fd93dfa0ebcc9b2396b56aaa191fc72e0'
-            '845342ef47279ae02ba5cb8a79aaa05f34c0b6ab388c4d19842dcbeadb027cc1'
-            '8be6493857bd6b7e86e5d47b456885952ab91fb32293d613f5c7ea69dd816542'
-            '026c15030315f37ef7aecc3cd0d7d7b23f0549062cc4affe8592ac458547bfb1'
-            '6ce42d497d1357b19e9fd659ca371849ba84faa4cd6dca741a0a7d986fb3fbda'
+            '3bbdd34b664cb331616469d0900951a175392a1244d3cc6a3d1f30c432434460'
+            'f45e7544e134fbca5ca1024af05830d986f2fec8a4e8d4d51cc668350c89dbb3'
+            '576ffa25db4a441a95397d603c3d53f2d16aea51453ffe3f55fd289e34bc2f4f'
+            'fecb72c8a71de218609da60f612a20187c693e8228fcbb96413c1218e1862278'
+            '059887b0c4c59a33c9df00a08e3fe62769cd4a7e287dbbf49213ab97c6fbf2f3'
+            '460558c073ed91cdcdf9fd839a90a4bd8e270168326ad9b966b5657ef9620d35'
+            '48a311f91a75118875536dac6557a79281142a2a433b9b13c328c39d60d5a634'
+            '8496d9170706e0991776a41cc7fe2702dffba471eb676535f7d37d7466e1983c'
+            '2e8f6a57a0235f9090f3670696fa4499f1261d181866a9870bd43499868208cf'
+            '06f968e8704f7499e25cf63dfa103e9e5225cdf7781f82b3f7e124b2b59cf237'
             '4bd1bac2959b989af0dae573123b9aff7c609090537e94ee0ae05099cad977b8'
             '2826b320e5295d663ec3fdce62472419361fbb3a8b773554ca8819f0cc677ebc'
             '9fd6517e1ae736a884d8d80ce9651b8264d87a7b79b358826c2c3c06f234b6eb'
