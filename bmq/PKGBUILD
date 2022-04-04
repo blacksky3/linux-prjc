@@ -71,7 +71,7 @@ patchpath=https://raw.githubusercontent.com/blacksky3/patches/main/$major
 source=(https://mirrors.edge.kernel.org/pub/linux/kernel/v5.x/linux-$pkgver.tar.xz
         ${archlinuxpath}/config
         # PRJC patch
-        ${patchpath}/prjc/0001-PRJC-for-5.17-v4.patch
+        ${patchpath}/prjc/0001-PRJC-for-5.17-v2.patch
         ${patchpath}/prjc/0001-sched-alt-Transpose-the-sched_rq_watermark-array.patch
         ${patchpath}/prjc/0002-sched-alt-Add-memory-barriers-around-atomics.patch
         ${patchpath}/prjc/0003-alt_core.c-Potential-fix-for-the-UBSAN-out-of-bounds.patch
@@ -534,7 +534,7 @@ _package-headers(){
 
 sha256sums=('7cd5c5d432a25f45060868ce6a8578890e550158a2f779c4a20804b551e84c24'
             '3bbdd34b664cb331616469d0900951a175392a1244d3cc6a3d1f30c432434460'
-            '25daea0ca175fd38af93a488d067c9f2ceeba862d8df4606232dbfa163abc79a'
+            'f45e7544e134fbca5ca1024af05830d986f2fec8a4e8d4d51cc668350c89dbb3'
             '89a3339c8fedcdf973a33093fe88b553cdf3cfff4af0bb94f77d3df972e2d26d'
             '91d680e43d85a2c0d5f054b89c5072e8ab5d4099694a5697dfe6608eee543f91'
             '0499e25db8ef415785571302c78899e940b7cc5d48c5badbd3bf15ae611726bd'
