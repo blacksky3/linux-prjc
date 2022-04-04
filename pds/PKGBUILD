@@ -71,7 +71,7 @@ patchpath=https://raw.githubusercontent.com/blacksky3/patches/main/$major
 source=(https://mirrors.edge.kernel.org/pub/linux/kernel/v5.x/linux-$pkgver.tar.xz
         ${archlinuxpath}/config
         # PRJC patch
-        ${patchpath}/prjc/0001-PRJC-for-5.17-v2.patch
+        ${patchpath}/prjc/0001-PRJC-for-5.17-v4.patch
         ${patchpath}/prjc/0001-sched-alt-Transpose-the-sched_rq_watermark-array.patch
         ${patchpath}/prjc/0002-sched-alt-Add-memory-barriers-around-atomics.patch
         ${patchpath}/prjc/0003-alt_core.c-Potential-fix-for-the-UBSAN-out-of-bounds.patch
@@ -80,6 +80,7 @@ source=(https://mirrors.edge.kernel.org/pub/linux/kernel/v5.x/linux-$pkgver.tar.
         ${patchpath}/prjc/0006-sched-alt-Sync-61bb6cd2f765-mm-move-node_reclaim_dis.patch
         ${patchpath}/prjc/0007-init-Kconfig-ProjectC-Move-uclamp-config-block-out-o.patch
         ${patchpath}/prjc/0008-sched-alt-Sync-32ed980c3020-sched-Remove-unused-inli.patch
+        ${patchpath}/prjc/0009-prjc-remove-duplicated-struct-__call_single_nod.patch
         # Arch patches
         ${patchpath}/arch/0001-ZEN-Add-sysctl-and-CONFIG-to-disallow-unprivileged-C.patch
         ${patchpath}/arch/0002-random-treat-bootloader-trust-toggle-the-same-way-as.patch
@@ -533,15 +534,16 @@ _package-headers(){
 
 sha256sums=('7cd5c5d432a25f45060868ce6a8578890e550158a2f779c4a20804b551e84c24'
             '3bbdd34b664cb331616469d0900951a175392a1244d3cc6a3d1f30c432434460'
-            'f45e7544e134fbca5ca1024af05830d986f2fec8a4e8d4d51cc668350c89dbb3'
-            '576ffa25db4a441a95397d603c3d53f2d16aea51453ffe3f55fd289e34bc2f4f'
-            'fecb72c8a71de218609da60f612a20187c693e8228fcbb96413c1218e1862278'
-            '059887b0c4c59a33c9df00a08e3fe62769cd4a7e287dbbf49213ab97c6fbf2f3'
-            '460558c073ed91cdcdf9fd839a90a4bd8e270168326ad9b966b5657ef9620d35'
-            '48a311f91a75118875536dac6557a79281142a2a433b9b13c328c39d60d5a634'
-            '8496d9170706e0991776a41cc7fe2702dffba471eb676535f7d37d7466e1983c'
-            '2e8f6a57a0235f9090f3670696fa4499f1261d181866a9870bd43499868208cf'
-            '06f968e8704f7499e25cf63dfa103e9e5225cdf7781f82b3f7e124b2b59cf237'
+            '25daea0ca175fd38af93a488d067c9f2ceeba862d8df4606232dbfa163abc79a'
+            '89a3339c8fedcdf973a33093fe88b553cdf3cfff4af0bb94f77d3df972e2d26d'
+            '91d680e43d85a2c0d5f054b89c5072e8ab5d4099694a5697dfe6608eee543f91'
+            '0499e25db8ef415785571302c78899e940b7cc5d48c5badbd3bf15ae611726bd'
+            'ca58509e5bfb9ea50c380ee59bbf2e0fcdfb4ddc358deab1e333dcd1bcd993e7'
+            'fe53b5c819f1f43e6d45d20a1c234f85b0989fe703ff723ba3bf967ac27a1a93'
+            '819ff36b03e418d06bbf84c06a7c7404a7118b0817df34ffcb2f1f2907383b03'
+            '8f560fa7496941de217ac79ad749ec7c84207681c29bb5d72c2cd5e5f4c2603e'
+            '692e7305152edcd8e114a14201cb8f076154d8e91114f46b8ca05f948573bed4'
+            'cef867155eddbeddeb73d033cf3f4d9d2b174d847061ae67418215d6de2c9086'
             '4bd1bac2959b989af0dae573123b9aff7c609090537e94ee0ae05099cad977b8'
             '2826b320e5295d663ec3fdce62472419361fbb3a8b773554ca8819f0cc677ebc'
             '9fd6517e1ae736a884d8d80ce9651b8264d87a7b79b358826c2c3c06f234b6eb'
