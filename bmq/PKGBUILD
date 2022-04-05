@@ -54,7 +54,7 @@ for _p in "${pkgname[@]}"; do
   }"
 done
 pkgver=5.17.1
-pkgrel=1
+pkgrel=6
 major=5.17
 arch=(x86_64)
 url='https://www.kernel.org/'
@@ -539,11 +539,11 @@ _package-headers(){
 sha256sums=('7cd5c5d432a25f45060868ce6a8578890e550158a2f779c4a20804b551e84c24'
             '3bbdd34b664cb331616469d0900951a175392a1244d3cc6a3d1f30c432434460'
             'f45e7544e134fbca5ca1024af05830d986f2fec8a4e8d4d51cc668350c89dbb3'
-            '89a3339c8fedcdf973a33093fe88b553cdf3cfff4af0bb94f77d3df972e2d26d'
-            '91d680e43d85a2c0d5f054b89c5072e8ab5d4099694a5697dfe6608eee543f91'
-            '0499e25db8ef415785571302c78899e940b7cc5d48c5badbd3bf15ae611726bd'
-            'ca58509e5bfb9ea50c380ee59bbf2e0fcdfb4ddc358deab1e333dcd1bcd993e7'
-            'fe53b5c819f1f43e6d45d20a1c234f85b0989fe703ff723ba3bf967ac27a1a93'
+            '49fd48afbdbc8484e3d5e610888449cf052923a6a76ea3054e6ed05552e9cc15'
+            '0fd74a64849b0e09ac27bbad4060835c5613de4993dbccf50fced8822d65765d'
+            '6935aecd4d205174fb6c30f8793da4b9c9812ad74fb18e6d392a9351a1518bd5'
+            '9dad6f97ea70bd771e45e023ae3bb7517ae08ffff2cd90aa6c2db6b9e9dcecdb'
+            '3fbbf63d399f066f5c3f800eff9d3546d9cb19ac3c5fb05fc1c8d0ca54398f7a'
             '819ff36b03e418d06bbf84c06a7c7404a7118b0817df34ffcb2f1f2907383b03'
             '8f560fa7496941de217ac79ad749ec7c84207681c29bb5d72c2cd5e5f4c2603e'
             '692e7305152edcd8e114a14201cb8f076154d8e91114f46b8ca05f948573bed4'
