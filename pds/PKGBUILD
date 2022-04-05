@@ -54,7 +54,7 @@ for _p in "${pkgname[@]}"; do
   }"
 done
 pkgver=5.17.1
-pkgrel=6
+pkgrel=1
 major=5.17
 arch=(x86_64)
 url='https://www.kernel.org/'
