@@ -53,7 +53,7 @@ for _p in "${pkgname[@]}"; do
     _package${_p#$pkgbase}
   }"
 done
-pkgver=5.17.1
+pkgver=5.17.3
 pkgrel=1
 major=5.17
 arch=(x86_64)
@@ -65,30 +65,33 @@ if [[ "$_compiler" = "2" ]]; then
 fi
 options=(!strip)
 
-archlinuxpath=https://raw.githubusercontent.com/archlinux/svntogit-packages/5a760e76311f5e8a9bb6c8fa69cc17d59e705322/trunk
+archlinuxpath=https://raw.githubusercontent.com/archlinux/svntogit-packages/a2a724a2d34d9d055359d79b4babc9d329778978/trunk
 patchpath=https://raw.githubusercontent.com/blacksky3/patches/main/$major
 
 source=(https://mirrors.edge.kernel.org/pub/linux/kernel/v5.x/linux-$pkgver.tar.xz
         ${archlinuxpath}/config
         # PRJC patch
-        ${patchpath}/prjc/0001-PRJC-for-5.17-v2.patch
-        ${patchpath}/prjc/0001-sched-alt-Transpose-the-sched_rq_watermark-array.patch
-        ${patchpath}/prjc/0002-sched-alt-Add-memory-barriers-around-atomics.patch
-        ${patchpath}/prjc/0003-alt_core.c-Potential-fix-for-the-UBSAN-out-of-bounds.patch
-        ${patchpath}/prjc/0004-alt_core.c-Add-potentially-missing-idle-on_rq-assign.patch
-        ${patchpath}/prjc/0005-alt_core.c-Add-potentially-missing-assignment-of-p-o.patch
-        ${patchpath}/prjc/0006-sched-alt-Sync-61bb6cd2f765-mm-move-node_reclaim_dis.patch
-        ${patchpath}/prjc/0007-init-Kconfig-ProjectC-Move-uclamp-config-block-out-o.patch
-        ${patchpath}/prjc/0008-sched-alt-Sync-32ed980c3020-sched-Remove-unused-inli.patch
-        ${patchpath}/prjc/0009-prjc-remove-duplicated-struct-__call_single_nod.patch
+        ${patchpath}/prjc/V2/0001-PRJC-for-5.17-v3.patch
+        ${patchpath}/prjc/V2/0001-sched-alt-Transpose-the-sched_rq_watermark-array.patch
+        ${patchpath}/prjc/V2/0002-sched-alt-Add-memory-barriers-around-atomics.patch
+        ${patchpath}/prjc/V2/0003-alt_core.c-Potential-fix-for-the-UBSAN-out-of-bounds.patch
+        ${patchpath}/prjc/V2/0004-alt_core.c-Add-potentially-missing-idle-on_rq-assign.patch
+        ${patchpath}/prjc/V2/0005-alt_core.c-Add-potentially-missing-assignment-of-p-o.patch
+        ${patchpath}/prjc/V2/0006-sched-alt-Sync-32ed980c3020-sched-Remove-unused-inli.patch
+        ${patchpath}/prjc/V2/0007-sched-alt-Sync-sched-sugov-Ignore-busy-filter-when-r.patch
+        ${patchpath}/prjc/V2/0008-sched-alt-Sync-sched-uclamp-Fix-iowait-boost-escapin.patch
+        ${patchpath}/prjc/V2/0009-sched-alt-Sync-sched-uclamp-Add-dummy-functions-to-s.patch
         # Arch patches
         ${patchpath}/arch/0001-ZEN-Add-sysctl-and-CONFIG-to-disallow-unprivileged-C.patch
         ${patchpath}/arch/0001-random-treat-bootloader-trust-toggle-the-same-way-as.patch
-        ${patchpath}/arch/0002-Revert-swiotlb-rework-fix-info-leak-with-DMA_FROM_DE.patch
+        #${patchpath}/arch/0002-Revert-swiotlb-rework-fix-info-leak-with-DMA_FROM_DE.patch
         ${patchpath}/arch/0003-tick-Detect-and-fix-jiffies-update-stall.patch
         ${patchpath}/arch/0004-tick-rcu-Remove-obsolete-rcu_needs_cpu-parameters.patch
         ${patchpath}/arch/0005-tick-rcu-Stop-allowing-RCU_SOFTIRQ-in-idle.patch
         ${patchpath}/arch/0006-lib-irq_poll-Declare-IRQ_POLL-softirq-vector-as-ksof.patch
+        #${patchpath}/arch/0007-x86-speculation-Restore-speculation-related-MSRs-dur.patch
+        #${patchpath}/arch/0008-Reinstate-some-of-swiotlb-rework-fix-info-leak-with-.patch
+        #${patchpath}/arch/0009-Revert-ACPI-processor-idle-Only-flush-cache-on-enter.patch
         # Block patches. Set BFQ as default
         ${patchpath}/block/0001-block-Kconfig.iosched-set-default-value-of-IOSCHED_B.patch
         ${patchpath}/block/0002-block-Fix-depends-for-BLK_DEV_ZONED.patch
@@ -536,25 +539,24 @@ _package-headers(){
   ln -sr "$builddir" "$pkgdir/usr/src/$pkgbase"
 }
 
-sha256sums=('7cd5c5d432a25f45060868ce6a8578890e550158a2f779c4a20804b551e84c24'
-            '3bbdd34b664cb331616469d0900951a175392a1244d3cc6a3d1f30c432434460'
-            'f45e7544e134fbca5ca1024af05830d986f2fec8a4e8d4d51cc668350c89dbb3'
-            '49fd48afbdbc8484e3d5e610888449cf052923a6a76ea3054e6ed05552e9cc15'
-            '0fd74a64849b0e09ac27bbad4060835c5613de4993dbccf50fced8822d65765d'
-            '6935aecd4d205174fb6c30f8793da4b9c9812ad74fb18e6d392a9351a1518bd5'
-            '9dad6f97ea70bd771e45e023ae3bb7517ae08ffff2cd90aa6c2db6b9e9dcecdb'
-            '3fbbf63d399f066f5c3f800eff9d3546d9cb19ac3c5fb05fc1c8d0ca54398f7a'
-            '819ff36b03e418d06bbf84c06a7c7404a7118b0817df34ffcb2f1f2907383b03'
-            '8f560fa7496941de217ac79ad749ec7c84207681c29bb5d72c2cd5e5f4c2603e'
-            '692e7305152edcd8e114a14201cb8f076154d8e91114f46b8ca05f948573bed4'
-            'cef867155eddbeddeb73d033cf3f4d9d2b174d847061ae67418215d6de2c9086'
+sha256sums=('32d0a8e366b87e1cbde951b9f7a01287546670ba60fac35cccfc8a7c005a162c'
+            'c0ef360e34fd21c23509224abae894b0d6d37256cccf82575062a05986ee5dba'
+            '10324149dd9e93425bbb73faee26ae7b76c87a1c31a419c11cba3c1b2374373b'
+            '60f11fdfa7f049ff28727dd36f58cc4667fc45801530bb88a3c25d567e13246e'
+            '915bbc68a3a5b3c9ba9dc9da2580087339f62bebd9469a0e0ea79c9f084184cd'
+            '59bbc362e2186429b795c41a203880cd6ea816b669da9d057676b577e32fa8c7'
+            'fa036f3c3156e0d88c4c7ec187c9f21725f536a17df6cc2325f652bcddfcdaeb'
+            'afe86eda622b7bee75fba9e0fbdf30134ac463406117517f4fdfbcb3f3d8a198'
+            '21ce18c0567b055bb96f9b64aa2d6ba6c7f9e9dac304f5b190394452ffaec86e'
+            'a0781a49d6d26dc0a5cc5b857520f1293fbb66ef22f461025d7a8060d35d9d43'
+            '652541d5132b736a10fe6334a4884f3258a340ebe5e1479729efeccd9f092452'
+            '240a884171c64b7310e09876194a5b051c0d0ea2ac83b459a3eacbe178cde8ef'
             '4bd1bac2959b989af0dae573123b9aff7c609090537e94ee0ae05099cad977b8'
-            '8a41cecbb9828833032e6f7f3e9833e200e474669daeeb367f0c83629c3d39b3'
-            '81f028e13b16fa94d88ca90b18e93005fcf443702f0e29aa5840d334a234ccc7'
-            '310a4ebe648e37b77f2d9a1788d3ce40affa36ebcb8f7c77770fa5f63326ef3b'
-            '7eb152bb39237d9b1468bb786316f204268922046bb23723446ff9cd79bcba40'
-            'c8cd1e2c5a7206cc21894f7e8de124c42e252f55199fa7f7bf20b812daaba213'
-            'cd9d15995d1f437a039b248aa2bd4822d8f00e465fa8018687d31e78349483a7'
+            '223455f2f6fbda9adc2a74d056bbc55006e0c78c3111453e2d253e56eaf7689e'
+            '71cccbed658434bf0394fe91fb0738e661aef9f5a94dffda3c9918a315e825e4'
+            '99c0e2f6aac6a3f5f55fb1e4f3d36f2c9bb38163b2da45b3e43437d3fee4f050'
+            'a046b85754ed7582ec5876d06d3b971e418d079c40801f3e156bb353ef7b802c'
+            '40bde648ef07bc638571a3475e555919df8fd2bdfc5360a920e06178bbcdaf9b'
             '4d385d6a7f7fd9f9aba19d5c24c24814e1af370ff245c8dc98b03482a27cb257'
             'a043e4c393395e6ad50d35c973fa0952f5deb109aee8a23103e24297c027641e'
             '3a02c7382d4d490e16a6132fcba89004f73044c34daf65906c1f823d2ab25aeb'
