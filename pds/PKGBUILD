@@ -71,16 +71,7 @@ patchpath=https://raw.githubusercontent.com/blacksky3/patches/main/$major
 source=(https://mirrors.edge.kernel.org/pub/linux/kernel/v5.x/linux-$pkgver.tar.xz
         ${archlinuxpath}/config
         # PRJC patch
-        ${patchpath}/prjc/V2/0001-PRJC-for-5.17-v3.patch
-        ${patchpath}/prjc/V2/0001-sched-alt-Transpose-the-sched_rq_watermark-array.patch
-        ${patchpath}/prjc/V2/0002-sched-alt-Add-memory-barriers-around-atomics.patch
-        ${patchpath}/prjc/V2/0003-alt_core.c-Potential-fix-for-the-UBSAN-out-of-bounds.patch
-        ${patchpath}/prjc/V2/0004-alt_core.c-Add-potentially-missing-idle-on_rq-assign.patch
-        ${patchpath}/prjc/V2/0005-alt_core.c-Add-potentially-missing-assignment-of-p-o.patch
-        ${patchpath}/prjc/V2/0006-sched-alt-Sync-32ed980c3020-sched-Remove-unused-inli.patch
-        ${patchpath}/prjc/V2/0007-sched-alt-Sync-sched-sugov-Ignore-busy-filter-when-r.patch
-        ${patchpath}/prjc/V2/0008-sched-alt-Sync-sched-uclamp-Fix-iowait-boost-escapin.patch
-        ${patchpath}/prjc/V2/0009-sched-alt-Sync-sched-uclamp-Add-dummy-functions-to-s.patch
+        ${patchpath}/prjc/prjc_v5.17-r1.patch
         # Arch patches
         ${patchpath}/arch/0001-ZEN-Add-sysctl-and-CONFIG-to-disallow-unprivileged-C.patch
         ${patchpath}/arch/0001-random-treat-bootloader-trust-toggle-the-same-way-as.patch
@@ -92,6 +83,8 @@ source=(https://mirrors.edge.kernel.org/pub/linux/kernel/v5.x/linux-$pkgver.tar.
         #${patchpath}/arch/0007-x86-speculation-Restore-speculation-related-MSRs-dur.patch
         #${patchpath}/arch/0008-Reinstate-some-of-swiotlb-rework-fix-info-leak-with-.patch
         #${patchpath}/arch/0009-Revert-ACPI-processor-idle-Only-flush-cache-on-enter.patch
+        #${patchpath}/arch/0010-gpio-Restrict-usage-of-GPIO-chip-irq-members-before-.patch
+        ${patchpath}/arch/0011-gpio-Request-interrupts-after-IRQ-is-initialized.patch
         # Block patches. Set BFQ as default
         ${patchpath}/block/0001-block-Kconfig.iosched-set-default-value-of-IOSCHED_B.patch
         ${patchpath}/block/0002-block-Fix-depends-for-BLK_DEV_ZONED.patch
@@ -425,7 +418,7 @@ build(){
 }
 
 _package(){
-  pkgdesc='The Linux kernel and modules with Alfred Chen PDS/BMQ CPU scheduler (kept alive artificially by Piotr Górski), Arch, Block, CPU, CPU Power, Futex, PRJC Fixes, Wine and kernel_compiler_patch patch - PDS enabled'
+  pkgdesc='The Linux kernel and modules with Alfred Chen PDS/BMQ CPU scheduler, Arch, Block, CPU, CPU Power, Futex, Wine and kernel_compiler_patch patch - PDS enabled'
   depends=(coreutils kmod initramfs)
   optdepends=('wireless-regdb: to set the correct wireless channels of your country'
               'linux-firmware: firmware images needed for some devices')
@@ -541,22 +534,14 @@ _package-headers(){
 
 sha256sums=('32d0a8e366b87e1cbde951b9f7a01287546670ba60fac35cccfc8a7c005a162c'
             'c0ef360e34fd21c23509224abae894b0d6d37256cccf82575062a05986ee5dba'
-            '10324149dd9e93425bbb73faee26ae7b76c87a1c31a419c11cba3c1b2374373b'
-            '60f11fdfa7f049ff28727dd36f58cc4667fc45801530bb88a3c25d567e13246e'
-            '915bbc68a3a5b3c9ba9dc9da2580087339f62bebd9469a0e0ea79c9f084184cd'
-            '59bbc362e2186429b795c41a203880cd6ea816b669da9d057676b577e32fa8c7'
-            'fa036f3c3156e0d88c4c7ec187c9f21725f536a17df6cc2325f652bcddfcdaeb'
-            'afe86eda622b7bee75fba9e0fbdf30134ac463406117517f4fdfbcb3f3d8a198'
-            '21ce18c0567b055bb96f9b64aa2d6ba6c7f9e9dac304f5b190394452ffaec86e'
-            'a0781a49d6d26dc0a5cc5b857520f1293fbb66ef22f461025d7a8060d35d9d43'
-            '652541d5132b736a10fe6334a4884f3258a340ebe5e1479729efeccd9f092452'
-            '240a884171c64b7310e09876194a5b051c0d0ea2ac83b459a3eacbe178cde8ef'
+            '310231d6026801a5fb8d191f789a1003df3d63af4cef01712276e86868e5fe15'
             '4bd1bac2959b989af0dae573123b9aff7c609090537e94ee0ae05099cad977b8'
             '6dd5c690e26ca9a7488c444cb5feaffc44462eca9040bca9fe929c65924f7123'
             'da260c966a5a07f1bcbca0ed63de4b16f75412b1d500857f0e5e61ffe9f8c62c'
             'e53a474ac6dc512a62b1a5774669e6ff460a2e2035d102b84d3ebeb389602f3e'
             'cfe8ba859263ce4b4575130be28865666cef0132600e52fbad4af50842b15bf0'
             'fd836fbbce8128fa568067cf6974a0bf4225ebdf844c8d396081a9bc3cb53180'
+            'ee8bae1854a138c0aa29a829587a25a4f5e24cb92581c51134b3062cf551222f'
             '4d385d6a7f7fd9f9aba19d5c24c24814e1af370ff245c8dc98b03482a27cb257'
             'a043e4c393395e6ad50d35c973fa0952f5deb109aee8a23103e24297c027641e'
             '3a02c7382d4d490e16a6132fcba89004f73044c34daf65906c1f823d2ab25aeb'
