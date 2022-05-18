@@ -53,7 +53,7 @@ for _p in "${pkgname[@]}"; do
     _package${_p#$pkgbase}
   }"
 done
-pkgver=5.17.7
+pkgver=5.17.9
 pkgrel=1
 major=5.17
 arch=(x86_64)
@@ -65,13 +65,13 @@ if [[ "$_compiler" = "2" ]]; then
 fi
 options=(!strip)
 
-archlinuxpath=https://raw.githubusercontent.com/archlinux/svntogit-packages/d74d6d98d884285f2ca0aea4c598a83dd64a4b72/trunk
+archlinuxpath=https://raw.githubusercontent.com/archlinux/svntogit-packages/c0019a07879d922a9dcce49c27431902e4f4b783/trunk
 patchpath=https://raw.githubusercontent.com/blacksky3/patches/main/$major
 
 source=(https://mirrors.edge.kernel.org/pub/linux/kernel/v5.x/linux-$pkgver.tar.xz
         ${archlinuxpath}/config
         # PRJC patch
-        ${patchpath}/prjc/V2/0001-PRJC-for-5.17-v3.patch
+        ${patchpath}/prjc/V2/0001-PRJC-for-5.17-v4.patch
         ${patchpath}/prjc/V2/0001-sched-alt-Transpose-the-sched_rq_watermark-array.patch
         ${patchpath}/prjc/V2/0002-sched-alt-Add-memory-barriers-around-atomics.patch
         ${patchpath}/prjc/V2/0003-alt_core.c-Potential-fix-for-the-UBSAN-out-of-bounds.patch
@@ -80,7 +80,7 @@ source=(https://mirrors.edge.kernel.org/pub/linux/kernel/v5.x/linux-$pkgver.tar.
         ${patchpath}/prjc/V2/0006-sched-alt-Sync-32ed980c3020-sched-Remove-unused-inli.patch
         ${patchpath}/prjc/V2/0007-sched-alt-Sync-sched-sugov-Ignore-busy-filter-when-r.patch
         ${patchpath}/prjc/V2/0008-sched-alt-Sync-sched-uclamp-Fix-iowait-boost-escapin.patch
-        ${patchpath}/prjc/V2/0009-sched-alt-Sync-sched-uclamp-Add-dummy-functions-to-s.patch
+        ${patchpath}/prjc/V2/0009-sched-alt-Make-sure-that-__set_task_cpu-gets-called-.patch
         # Arch patches
         ${patchpath}/arch/0001-ZEN-Add-sysctl-and-CONFIG-to-disallow-unprivileged-C.patch
         ${patchpath}/arch/0001-random-treat-bootloader-trust-toggle-the-same-way-as.patch
@@ -542,18 +542,18 @@ _package-headers(){
   ln -sr "$builddir" "$pkgdir/usr/src/$pkgbase"
 }
 
-sha256sums=('22f67ef6b12ef6c0c0353be4b90b4bf4b9b18b858c16c346fa495b67ec718c99'
+sha256sums=('172424bc41ef2df9b19457ceb022b56a51eb9497529b15ce7e9b8d6f90ad5978'
             'fb37785c43d90085ab4e7d7cee522cb8232713b6c601d74cfc7234eeaeb1e6b5'
-            '10324149dd9e93425bbb73faee26ae7b76c87a1c31a419c11cba3c1b2374373b'
-            '60f11fdfa7f049ff28727dd36f58cc4667fc45801530bb88a3c25d567e13246e'
-            '915bbc68a3a5b3c9ba9dc9da2580087339f62bebd9469a0e0ea79c9f084184cd'
-            '59bbc362e2186429b795c41a203880cd6ea816b669da9d057676b577e32fa8c7'
-            'fa036f3c3156e0d88c4c7ec187c9f21725f536a17df6cc2325f652bcddfcdaeb'
-            'afe86eda622b7bee75fba9e0fbdf30134ac463406117517f4fdfbcb3f3d8a198'
-            '21ce18c0567b055bb96f9b64aa2d6ba6c7f9e9dac304f5b190394452ffaec86e'
-            'a0781a49d6d26dc0a5cc5b857520f1293fbb66ef22f461025d7a8060d35d9d43'
-            '652541d5132b736a10fe6334a4884f3258a340ebe5e1479729efeccd9f092452'
-            '240a884171c64b7310e09876194a5b051c0d0ea2ac83b459a3eacbe178cde8ef'
+            'ab57ac95c42a4231c9f2221b00697714a4cb6d92c65ab9eca8c6acbf8e5c8857'
+            '5a02a0bd506e4a31ee2117799edbf3d4f2169fb3989a114edf804162b86498dd'
+            'e88f268a1a23bfe483e6ef8f9930b9958dc6b90d5c61c5d5c6ec8e44dce27ae6'
+            'bf3ab78605663555685dea89ecc55fd2e666441046c8b8b82eecc86c836392c4'
+            'ab2b2c7fe7e99c5fbe9ab06b6ab5a3ca0fd8d7325c5d804de57781312782e7a8'
+            '1a9f63abaa99c1fbad6feed76299b2a82664c2db94a28d762ac38355a4615612'
+            'b00ac1ca5d79eaf6bb28ea8307f89eb955d757347ca09fa52fa07757af411fb2'
+            '88a57491a9caae11dbfddd724efc674d457b37749d0bb2c0e3020770091007c1'
+            '1ca91292409ba6bc0798fc713ce0ea54be79419057e1f7937236e4c0cd81def7'
+            'd53f26ff5422c7e38013a9ed6534f33061234eb02065835fed056a248ed286b1'
             '4bd1bac2959b989af0dae573123b9aff7c609090537e94ee0ae05099cad977b8'
             '556db0cd181ceee90eeede40faa6306082cfcdebdc15fe6e286e78d21d631af3'
             '9afe31f7c9ae3660d39e71613b7b1a78f1cfa8af97db2b71b360348a365f403a'
