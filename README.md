@@ -1,10 +1,10 @@
 # linux-prjc
 
-Linux kernel build for Archlinux with Alfred Chen PDS/BMQ CPU scheduler, Arch, Block, CPU, CPU Power, Futex, Wine and kernel_compiler_patch patch.
+Linux kernel build for Archlinux with Alfred Chen PDS/BMQ CPU scheduler (kept alive artificially by Piotr Górski <lucjan.lucjanov@gmail.com>), AMD, Arch, Block, CPU, BTRFS, Futex, Wine and kernel_compiler_patch patch.
 
 # Version
 
-- 5.17.9
+- 5.18
 
 # Build
 
