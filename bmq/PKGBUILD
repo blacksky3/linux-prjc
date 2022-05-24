@@ -71,15 +71,16 @@ patchpath=https://raw.githubusercontent.com/blacksky3/patches/main/$major
 source=(https://mirrors.edge.kernel.org/pub/linux/kernel/v5.x/linux-$pkgver.tar.xz
         ${archlinuxpath}/config
         # PRJC patch
-        ${patchpath}/prjc/0001-PRJC-for-5.18-v3.patch
-        ${patchpath}/prjc/0001-sched-alt-Transpose-the-sched_rq_watermark-array.patch
-        ${patchpath}/prjc/0002-sched-alt-Add-memory-barriers-around-atomics.patch
-        ${patchpath}/prjc/0003-alt_core.c-Potential-fix-for-the-UBSAN-out-of-bounds.patch
-        ${patchpath}/prjc/0004-alt_core.c-Add-potentially-missing-idle-on_rq-assign.patch
-        ${patchpath}/prjc/0005-alt_core.c-Add-potentially-missing-assignment-of-p-o.patch
-        ${patchpath}/prjc/0006-sched-alt-Sync-32ed980c3020-sched-Remove-unused-inli.patch
-        ${patchpath}/prjc/0007-sched-alt-Sync-sched-sugov-Ignore-busy-filter-when-r.patch
-        ${patchpath}/prjc/0008-sched-alt-Sync-sched-uclamp-Fix-iowait-boost-escapin.patch
+        ${patchpath}/prjc/0001-PRJC-for-5.18-v4.patch
+        ${patchpath}/prjc/fixes/v2/0001-sched-alt-Transpose-the-sched_rq_watermark-array.patch
+        ${patchpath}/prjc/fixes/v2/0002-sched-alt-Add-memory-barriers-around-atomics.patch
+        ${patchpath}/prjc/fixes/v2/0003-alt_core.c-Potential-fix-for-the-UBSAN-out-of-bounds.patch
+        ${patchpath}/prjc/fixes/v2/0004-alt_core.c-Add-potentially-missing-idle-on_rq-assign.patch
+        ${patchpath}/prjc/fixes/v2/0005-alt_core.c-Add-potentially-missing-assignment-of-p-o.patch
+        ${patchpath}/prjc/fixes/v2/0006-sched-alt-Sync-32ed980c3020-sched-Remove-unused-inli.patch
+        ${patchpath}/prjc/fixes/v2/0007-sched-alt-Sync-sched-sugov-Ignore-busy-filter-when-r.patch
+        ${patchpath}/prjc/fixes/v2/0008-sched-alt-Sync-sched-uclamp-Fix-iowait-boost-escapin.patch
+        ${patchpath}/prjc/fixes/v2/0009-sched-alt-Add-missing-preempt_model_accessors-and-wo.patch
         # AMD patches
         ${patchpath}/amd/0001-amd-patches-v1.patch
         # Arch patches
@@ -91,7 +92,7 @@ source=(https://mirrors.edge.kernel.org/pub/linux/kernel/v5.x/linux-$pkgver.tar.
         ${patchpath}/block/0002-LL-elevator-set-default-scheduler-to-bfq-for-blk-mq.patch
         ${patchpath}/block/0003-LL-elevator-always-use-bfq-unless-overridden-by-flag.patch
         # BTRFS patches
-        ${patchpath}/btrfs/0001-btrfs-patches-v1.patch
+        ${patchpath}/btrfs/0001-btrfs-patches-v3.patch
         # CPU patches
         ${patchpath}/cpu/0002-init-Kconfig-enable-O3-for-all-arches.patch
         ${patchpath}/cpu/0004-Makefile-Turn-off-loop-vectorization-for-GCC-O3-opti.patch
@@ -422,7 +423,7 @@ build(){
 }
 
 _package(){
-  pkgdesc='The Linux kernel and modules with Alfred Chen PDS/BMQ CPU scheduler (kept alive artificially by Piotr Górski <lucjan.lucjanov@gmail.com>), AMD, Arch, Block, CPU, BTRFS,Futex, Wine and kernel_compiler_patch patch - BMQ enabled'
+  pkgdesc='The Linux kernel and modules with Alfred Chen PDS/BMQ CPU scheduler, AMD, Arch, Block, CPU, BTRFS,Futex, Wine and kernel_compiler_patch patch - BMQ enabled'
   depends=(coreutils kmod initramfs)
   optdepends=('wireless-regdb: to set the correct wireless channels of your country'
               'linux-firmware: firmware images needed for some devices')
@@ -538,15 +539,16 @@ _package-headers(){
 
 sha256sums=('51f3f1684a896e797182a0907299cc1f0ff5e5b51dd9a55478ae63a409855cee'
             'fb37785c43d90085ab4e7d7cee522cb8232713b6c601d74cfc7234eeaeb1e6b5'
-            '1c8aec703aea5a1c2bdf4e93937deeecc282d5127321322abd529671028fe179'
-            'aeda6fb187a5ad060606a4f337aa9319712f0135d51e03001abcf195b5614ca8'
-            '4969bede8e4a3f2ada3d0112babb76bf928ff71e4253321818f6fb4938743557'
-            'eefe2e1f6385ebc50adc03ce10d5573527e17f07544acb23cafdd1a00a2d2cee'
-            '7a847f3f2c4a4f29fc3e5db76a4c1ef81a32497600202352778c466466ab8560'
-            'a4a87df7929a1d5c0314a75e2131950f1549f6b4cd1651d8d03b9b3a485b8206'
-            '6cf24371c5d8eb72b7553f5672b1c3ea69f3332228e3bd35f55577ee910be631'
-            'd4707138cd2cc657dda24303542012af5834772511c6356f39c35ffb6d4c95ef'
-            'fec2bc4bcdc7e1aa9b1b0e1257d1a7f95a5a8cd6f433a76e2adf19c7830f6576'
+            '9a9556d54dd13135e088cde3fab8a0baac2f267156d5a6d298365df5a746b905'
+            '4fdc8cd09292f9e2be19c657e337ae65fd7fb2ad6d7588329531d510d7508091'
+            '630fae266999315be5ec9e817327d7c5c635b1777309f7aebbd8fab303e86b82'
+            'a22734457124133074d7f56e21b5198f18621b49f82e023a790a1910c2daa66c'
+            '8b564c4b0a4b2d424527b316eb88dae5d23b1b6d7a76fe89d65c90f73212d822'
+            '71b2fe947fc2e3bce8045337c340e0a191bb2c5f0fea1cd20984604ed3bd86af'
+            '5221117862da752d90eec4868f9056eb002aaef02b81ce74a5322314ce41d85b'
+            '30eebe78b42926a4e0034ea4af3247741f14f1c87e2eb1d76ecb5f4d8054b071'
+            '8a3621bb570c783e9429ca32b9385825e44e642bb8210e5b32c875e4a135e03e'
+            '5a1b89f855616ced28ee69198bf92ac3fa0386e0339c8d9c72dd0a2526d3cc5d'
             '9824cd3a41db040bf28d6538aa4805f869333139cbcf43e0422e1b42f5401270'
             '4bd1bac2959b989af0dae573123b9aff7c609090537e94ee0ae05099cad977b8'
             '9c0e1dea6f645eee9b09cf7d264b17f00f636bdda35c93d354562dda0d674005'
@@ -554,7 +556,7 @@ sha256sums=('51f3f1684a896e797182a0907299cc1f0ff5e5b51dd9a55478ae63a409855cee'
             'e4dd2216fc31d0eab68d674cbbce70343f920c5146613e97fe8c3afed3139157'
             '7a7f9a4d66abe261f35373002e3556b8af7204d155896c2e6d1b55d74a31b5b8'
             '3829e6f9dd55e5c0ae997d409b15c8784e7584a820c7aa0941d50ed6dffeab31'
-            'fdfa87ca455134bfb0f2c26fa701d422c815d7ea9b50986896f82ecc90a4dc77'
+            'ada818c395255b5112c047208816f0234d9930428782d14915c83e2d197fa0ae'
             'cd634fe619625b01584cd01534b23c2d4eca8146c9690205806b0db5d8029906'
             '26fd09d627f83eb78ecd7e65356731d501b89fbc6cd339018aa1ccd708c4756f'
             'd1939e9d71df2d1b3bd2c60c26e2f26246f4d8f2a93e131e4ee8d49ba7dfc74f'
