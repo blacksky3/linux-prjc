@@ -72,15 +72,6 @@ source=(https://mirrors.edge.kernel.org/pub/linux/kernel/v5.x/linux-$pkgver.tar.
         ${archlinuxpath}/config
         # PRJC patch
         ${patchpath}/prjc/sirlucjan/0001-PRJC-for-5.18-v6.patch
-        ${patchpath}/prjc/fixes/v3/0001-sched-alt-Transpose-the-sched_rq_watermark-array.patch
-        ${patchpath}/prjc/fixes/v3/0002-sched-alt-Add-memory-barriers-around-atomics.patch
-        ${patchpath}/prjc/fixes/v3/0003-alt_core.c-Potential-fix-for-the-UBSAN-out-of-bounds.patch
-        ${patchpath}/prjc/fixes/v3/0004-alt_core.c-Add-potentially-missing-idle-on_rq-assign.patch
-        ${patchpath}/prjc/fixes/v3/0005-alt_core.c-Add-potentially-missing-assignment-of-p-o.patch
-        ${patchpath}/prjc/fixes/v3/0006-sched-alt-Sync-32ed980c3020-sched-Remove-unused-inli.patch
-        ${patchpath}/prjc/fixes/v3/0007-sched-alt-Sync-sched-sugov-Ignore-busy-filter-when-r.patch
-        ${patchpath}/prjc/fixes/v3/0008-sched-alt-Sync-sched-uclamp-Fix-iowait-boost-escapin.patch
-        ${patchpath}/prjc/fixes/v3/0009-sched-alt-Add-missing-preempt_model_accessors.patch
         # AMD patches
         ${patchpath}/amd/0001-amd-patches-v1.patch
         # Arch patches
@@ -540,15 +531,6 @@ _package-headers(){
 sha256sums=('51f3f1684a896e797182a0907299cc1f0ff5e5b51dd9a55478ae63a409855cee'
             '5088714ec20c9c5b063decbf2210f5b153a908a71678aa156f5f3e81394e9c38'
             '72837d8cc652fa4859c933ea578978d69cfab6e5c4f8d55f3fb4231a0477c1e1'
-            '7015836e38119835e54af1c8434bbee9d757ccd78e75ea37e6fbd96903cd0b2c'
-            'a0be6d9a4f14b71e3a2d4a2f2eab380365679cbf266288ae79e6c60c04f75bf4'
-            '3da2570ee8b097c5933366c33ff2395f57302360f5d255f1f085e98e60313564'
-            'de213b03ca114c85be76229ec0bd49bd5557f04825b69f3622ad2143bd63896e'
-            '0edbb062a6ff7d6eaefadf80906bee24514b08361c217db6de47e27a2f5e8186'
-            'f2bb40683cd297f1977293b423153ea016e9b8f8240906a26e58890351b23cc4'
-            '38d62b9107e7d40ffcead7ac11ad942d59ad5e161a04f9d1c27d7504ad69c27d'
-            '5a88fb56444cafdf990be7974bf4fa433c21e1c00701feb67b02c6c0a6e0de74'
-            '2ef8c67987d2e765828cbae0df10247db2b030f6362a32641973fe6e3fb4bc53'
             '9824cd3a41db040bf28d6538aa4805f869333139cbcf43e0422e1b42f5401270'
             '4bd1bac2959b989af0dae573123b9aff7c609090537e94ee0ae05099cad977b8'
             '9c0e1dea6f645eee9b09cf7d264b17f00f636bdda35c93d354562dda0d674005'
