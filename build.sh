@@ -4,9 +4,9 @@
 
 # gcc
 
-cd pds && makepkg -s && rm -rf pkg/ src/ && cd ..
+cd 5.18/pds && makepkg -s && rm -rf pkg/ src/ && cd ..
 
-cd bmq && makepkg -s && rm -rf pkg/ src/ && cd ..
+cd 5.18/bmq && makepkg -s && rm -rf pkg/ src/ && cd ..
 
 # clang
 
