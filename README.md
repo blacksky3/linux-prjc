@@ -9,7 +9,7 @@ Linux kernel build for Archlinux with Alfred Chen PDS/BMQ CPU scheduler, AMD, Ar
 # Build
 
     git clone https://github.com/blacksky3/linux-prjc.git
-    cd linux-prjc/{pds,bmq}
+    cd linux-prjc/5.18/{pds,bmq}
     env_compiler=(1 or 2) makepkg -s
 
 # Build variables
