@@ -14,16 +14,8 @@ major=5.18
 
 echo "${source}"
 
-# build normal package with GCC
+# updpkgsums
 
-# gcc
+cd ${major}/pds && updpkgsums && cd ${source}
 
-cd ${major}/pds && makepkg -s && rm -rf pkg/ src/ && cd ${source}
-
-cd ${major}/bmq && makepkg -s && rm -rf pkg/ src/ && cd ${source}
-
-# clang
-
-#cd ${major}/pds && env _compiler=2 makepkg -s && rm -rf pkg/ src/ && cd ${source}
-
-#cd ${major}/bmq && env _compiler=2 makepkg -s && rm -rf pkg/ src/ && cd ${source}
+cd ${major}/bmq && updpkgsums && cd ${source}
