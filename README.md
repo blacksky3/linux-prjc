@@ -4,7 +4,7 @@ Linux kernel build for Archlinux with Alfred Chen PDS/BMQ CPU scheduler, AMD, Ar
 
 # Version
 
-- 5.18.9
+- 5.18.10
 
 # Build
 
